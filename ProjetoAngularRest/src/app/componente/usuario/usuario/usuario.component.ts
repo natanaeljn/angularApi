@@ -11,31 +11,65 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class UsuarioComponent implements OnInit {
 
     p:number=1;
-	usuarios: Observable<User[]>;
+	usuarios: Array<User[]>;
 	nome:String;
+	total:number;
 
 	constructor(private usuarioService: UsuarioService) { }
 
 	ngOnInit(): void {
 		this.usuarioService.getUsuariosList().subscribe(data => {
-			this.usuarios = data;
+			this.usuarios = data.content;
+			this.total= data.totalElements;
 		});
 	}
-	deleteUsuario(id: Number) {
+	deleteUsuario(id: Number,index) {
 		this.usuarioService.deletarUsuario(id).subscribe(data => {
-			console.log("Retorno do metodo delete:" + data);
-			this.usuarioService.getUsuariosList().subscribe(data => {
-			this.usuarios = data;
-		});
+			this.usuarios.splice(index,1);
+			
+			//console.log("Retorno do metodo delete:" + data);
+			//this.usuarioService.getUsuariosList().subscribe(data => {
+			//this.usuarios = data;
+	//	});
 			
 		});
 
 	}
 	
-	 consultarUser() {
-    this.usuarioService.consultarUser(this.nome).subscribe(data => {
-        this.usuarios = data;
-    });
+	 
+   carregarPagina(pagina) {
+
+
+    if (this.nome !== '') {
+      this.usuarioService.consultarUserPorPage(this.nome, (pagina - 1)).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    }
+    else {
+      this.usuarioService.getUsuariosListPage(pagina - 1).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    }
+
+  }
+  
+  
+  consultarUser() {
+
+    if (this.nome === '') {
+      this.usuarioService.getUsuariosList().subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
+
+      this.usuarioService.consultarUser(this.nome).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    }
   }
 
 

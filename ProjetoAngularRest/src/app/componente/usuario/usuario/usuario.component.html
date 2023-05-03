@@ -24,18 +24,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let usuario of usuarios  | paginate: { itemsPerPage:5, currentPage: p }">  
+    <tr *ngFor="let usuario of usuarios  | paginate: { itemsPerPage:5, currentPage: p ,totalItems: total}; let i=index">  
       <td>{{usuario.id}}</td>
       <td>{{usuario.nome}}</td>
       <td>{{usuario.cpf}}</td>
-      <td><button (click)="deleteUsuario(usuario.id)" class="btn btn-primary">Deletar</button></td>
+      <td><button (click)="deleteUsuario(usuario.id,i)" class="btn btn-primary">Deletar</button></td>
       <td><button  class="btn btn-warning" [routerLink]="['/usuarioAdd', usuario.id]" routerLinkActive="router-link-active" >Editar</button></td>
     </tr>
   </tbody>
 </table>
 
 <div class="text-center">
-<pagination-controls (pageChange)="p = $event"
+<pagination-controls (pageChange)="carregarPagina(p = $event);"
  previousLabel = "Voltar" nextLabel = "Avançar" responsive="true"></pagination-controls>
 
 </div>

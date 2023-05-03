@@ -14,6 +14,7 @@ import { GuardRotaGuard } from './service/guard-rota.guard';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+
 export const appRouters: Routes =[
   {path: 'home', component: HomeComponent, canActivate: [GuardRotaGuard]},
   {path: 'login', component: LoginComponent},
@@ -43,6 +44,8 @@ export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpInterceptorModule,
     NgxMaskModule.forRoot(optionsMask),
     NgxPaginationModule
+    
+    
     
   ],
   providers: [],

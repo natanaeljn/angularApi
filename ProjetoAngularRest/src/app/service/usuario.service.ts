@@ -23,6 +23,10 @@ export class UsuarioService {
 	getUsuariosList(): Observable<any> {
 		return this.http.get<any>(AppConstants.baseUrlLista);
 	}
+	getUsuariosListPage(pagina): Observable<any> {
+		return this.http.get<any>(AppConstants.baseUrlLista + 'page/' + pagina);
+	}
+	
 	getUsuario(id): Observable<any> {
 		return this.http.get<any>(AppConstants.baseUrl + id);
 	}
@@ -34,6 +38,9 @@ export class UsuarioService {
 
 	consultarUser(nome: String): Observable<any> {
 		return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
+	}
+	consultarUserPorPage(nome: String, page: Number): Observable<any> {
+		return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome + "/page/" + page);
 	}
 	
 	removerTelefone(id:Number): Observable<any>{
