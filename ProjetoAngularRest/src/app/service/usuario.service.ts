@@ -21,10 +21,16 @@ export class UsuarioService {
 	}
 
 	getUsuariosList(): Observable<any> {
-		return this.http.get<any>(AppConstants.baseUrlLista);
+		return this.http.get<any>(AppConstants.baseUrl);
 	}
+	getProfissaoList(): Observable<any> {
+		return this.http.get<any>(AppConstants.basePath + 'profissao/');
+	}
+	
+	
+	
 	getUsuariosListPage(pagina): Observable<any> {
-		return this.http.get<any>(AppConstants.baseUrlLista + 'page/' + pagina);
+		return this.http.get<any>(AppConstants.baseUrl + 'page/' + pagina);
 	}
 	
 	getUsuario(id): Observable<any> {
@@ -44,7 +50,7 @@ export class UsuarioService {
 	}
 	
 	removerTelefone(id:Number): Observable<any>{
-		return this.http.delete(AppConstants.baseUrlFone + "removerfone/" + id, {responseType : 'text'});
+		return this.http.delete(AppConstants.baseUrl + "removerfone/" + id, {responseType : 'text'});
 	}
 	
 

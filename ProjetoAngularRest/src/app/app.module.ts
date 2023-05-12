@@ -13,6 +13,9 @@ import { UsuarioAddComponent } from './componente/usuario/usuario-add/usuario-ad
 import { GuardRotaGuard } from './service/guard-rota.guard';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxCurrencyModule } from "ngx-currency";
+
+
 
 
 export const appRouters: Routes =[
@@ -43,7 +46,10 @@ export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {};
     routes,
     HttpInterceptorModule,
     NgxMaskModule.forRoot(optionsMask),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxCurrencyModule
+    
+    
     
     
     

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Profissao } from 'src/app/model/profissao';
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
@@ -14,10 +15,17 @@ export class UsuarioComponent implements OnInit {
 	usuarios: Array<User[]>;
 	nome:String;
 	total:number;
+	
+	
+	
+
 
 	constructor(private usuarioService: UsuarioService) { }
 
 	ngOnInit(): void {
+		
+		
+		
 		this.usuarioService.getUsuariosList().subscribe(data => {
 			this.usuarios = data.content;
 			this.total= data.totalElements;

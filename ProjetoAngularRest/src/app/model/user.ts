@@ -1,3 +1,4 @@
+import { Profissao } from "./profissao";
 import { Telefone } from "./telefone";
 
 export class User {
@@ -8,6 +9,9 @@ export class User {
 	cpf: String;
 	dataNascimento: String;
 	telefones: Array<Telefone>;
+	profissao: Profissao = new Profissao();
+	salario: DoubleRange;
+
 
 
 
